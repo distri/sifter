@@ -47,8 +47,8 @@ storage = Storage.<span class="keyword">new</span>(<span class="string">"sifter"
 
 trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 
-trinket.loadWorkspace(<span class="string">"master"</span>).<span class="keyword">then</span> (data) -&gt;
-  console.log data
+<span class="comment"># trinket.loadWorkspace("master").then (data) -&gt;</span>
+<span class="comment">#   console.log data</span>
 
 <span class="function"><span class="title">appendRecentImage</span></span> = (key) -&gt;
   recentImages = storage.get(<span class="string">"recentImages"</span>) <span class="keyword">or</span> []
