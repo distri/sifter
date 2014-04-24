@@ -14,8 +14,8 @@ Sift through Images and Junx
 
     trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 
-    trinket.loadWorkspace("master").then (data) ->
-      console.log data
+    # trinket.loadWorkspace("master").then (data) ->
+    #   console.log data
 
     appendRecentImage = (key) ->
       recentImages = storage.get("recentImages") or []
