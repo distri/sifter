@@ -42,11 +42,31 @@ applyStylesheet require <span class="string">"./style"</span>
 <span class="comment"># async = require "./lib/async"</span>
 
 S3Trinket = require <span class="string">"s3-trinket"</span>
+Storage = require <span class="string">"storage"</span>
+storage = Storage.<span class="keyword">new</span>(<span class="string">"sifter"</span>)
 
 trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 
 trinket.loadWorkspace(<span class="string">"master"</span>).<span class="keyword">then</span> (data) -&gt;
-  console.log data</code></pre>
+  console.log data
+
+<span class="function"><span class="title">appendRecentImage</span></span> = (key) -&gt;
+  recentImages = storage.get(<span class="string">"recentImages"</span>) <span class="keyword">or</span> []
+  recentImages.push key
+
+  storage.set <span class="string">"recentImages"</span>, recentImages
+
+addEventListener <span class="string">"message"</span>, (event) -&gt;
+  {data, origin, source} = event
+
+  <span class="keyword">if</span> data.key
+    appendRecentImage data.key
+
+  <span class="comment"># Send back info for debugging</span>
+  source.postMessage
+    data: data
+    origin: origin
+  , <span class="string">"*"</span></code></pre>
 </div>
         </li>
         
