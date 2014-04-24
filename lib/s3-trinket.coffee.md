@@ -1,8 +1,6 @@
 S3 Trinket
 ==========
 
-    base = "http://trinket.s3.amazonaws.com/"
-
     S3 = require "s3"
     SHA1 = require "sha1"
 
@@ -10,31 +8,26 @@ S3 Trinket
       uploader = S3.uploader(policy)
 
       user = getUserFromPolicy(policy)
+      base = "http://#{policy.bucket}.s3.amazonaws.com/#{user}"
 
 Post a blob to S3 using the given namespace as a content addressable store.
 
       post: (namespace, blob) ->
         blobToS3 uploader, "#{user}#{namespace}", blob
 
-      get: (namespace="") ->
+      loadWorkspace: (name) ->
+        $.getJSON "#{base}workspaces/#{name}.json"
+
+      saveWorkspace: (name, data) ->
+        uploader.upload
+          key: "#{user}workspaces/#{name}.json"
+          blob: new Blob [JSON.stringify(data)], type: "application/json"
+          cacheControl: 60
+
+      list: (namespace="") ->
         namespace = "#{namespace}"
 
-        url = "#{base}#{user}#{namespace}"
-
-        $.get(url).then (data) ->
-          $(data).find("Key").map ->
-            this.innerHTML
-          .get()
-
-To get a census of all the items we need to list them, then perform a HEAD
-request to get the Content-Type.
-
-This will let us partition the items into images, and json data.
-
-      census: (namespace="") ->
-        namespace = "/#{namespace}"
-
-        url = "#{base}#{userId}#{namespace}"
+        url = "#{base}#{namespace}"
 
         $.get(url).then (data) ->
           $(data).find("Key").map ->

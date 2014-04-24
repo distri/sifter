@@ -12,6 +12,10 @@ Sift through Images and Junx
 
     trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 
+    trinket.loadWorkspace("master")
+    .then (data) ->
+      console.log "loaded workspace", data
+
 Post edited images.
 
 >     trinket.post "images", imgBlob, (namespacedSha) ->
