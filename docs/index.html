@@ -41,34 +41,12 @@ applyStylesheet require <span class="string">"./style"</span>
 
 <span class="comment"># async = require "./lib/async"</span>
 
-S3Trinket = require <span class="string">"./lib/s3-trinket"</span>
+S3Trinket = require <span class="string">"s3-trinket"</span>
 
 trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 
-trinket.loadWorkspace(<span class="string">"master"</span>)
-.<span class="keyword">then</span> (data) -&gt;
-  console.log <span class="string">"loaded workspace"</span>, data</code></pre>
-</div>
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              <div class="pilwrap">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Post edited images.</p>
-<blockquote>
-<pre><code>trinket.post &quot;images&quot;, imgBlob, (namespacedSha) -&gt;</code></pre>
-</blockquote>
-<p>After sifting post image sets.</p>
-<blockquote>
-<pre><code>trinket.post &quot;image_sets&quot;, json, (namespacedSha) -&gt;</code></pre>
-</blockquote>
-
-            </div>
-            <div class="content"><pre><code class="lang-coffeescript">
-</code></pre>
+trinket.loadWorkspace(<span class="string">"master"</span>).<span class="keyword">then</span> (data) -&gt;
+  console.log data</code></pre>
 </div>
         </li>
         
