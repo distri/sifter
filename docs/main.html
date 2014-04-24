@@ -43,7 +43,11 @@ applyStylesheet require <span class="string">"./style"</span>
 
 S3Trinket = require <span class="string">"./lib/s3-trinket"</span>
 
-trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)</code></pre>
+trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
+
+trinket.loadWorkspace(<span class="string">"master"</span>)
+.<span class="keyword">then</span> (data) -&gt;
+  console.log <span class="string">"loaded workspace"</span>, data</code></pre>
 </div>
         </li>
         

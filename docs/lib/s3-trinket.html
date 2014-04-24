@@ -34,15 +34,14 @@
               </div>
               
             </div>
-            <div class="content"><pre><code class="lang-coffeescript">base = <span class="string">"http://trinket.s3.amazonaws.com/"</span>
-
-S3 = require <span class="string">"s3"</span>
+            <div class="content"><pre><code class="lang-coffeescript">S3 = require <span class="string">"s3"</span>
 SHA1 = require <span class="string">"sha1"</span>
 
 module.<span class="function"><span class="title">exports</span></span> = (policy) -&gt;
   uploader = S3.uploader(policy)
 
-  user = getUserFromPolicy(policy)</code></pre>
+  user = getUserFromPolicy(policy)
+  base = <span class="string">"http://<span class="subst">#{policy.bucket}</span>.s3.amazonaws.com/<span class="subst">#{user}</span>"</span></code></pre>
 </div>
         </li>
         
@@ -58,10 +57,19 @@ module.<span class="function"><span class="title">exports</span></span> = (polic
             <div class="content"><pre><code class="lang-coffeescript">  post: (namespace, blob) -&gt;
     blobToS3 uploader, <span class="string">"<span class="subst">#{user}</span><span class="subst">#{namespace}</span>"</span>, blob
 
-  get: (namespace=<span class="string">""</span>) -&gt;
+  loadWorkspace: (name) -&gt;
+    $.getJSON <span class="string">"<span class="subst">#{base}</span>workspaces/<span class="subst">#{name}</span>.json"</span>
+
+  saveWorkspace: (name, data) -&gt;
+    uploader.upload
+      key: <span class="string">"<span class="subst">#{user}</span>workspaces/<span class="subst">#{name}</span>.json"</span>
+      blob: <span class="keyword">new</span> Blob [JSON.stringify(data)], type: <span class="string">"application/json"</span>
+      cacheControl: <span class="number">60</span>
+
+  list: (namespace=<span class="string">""</span>) -&gt;
     namespace = <span class="string">"<span class="subst">#{namespace}</span>"</span>
 
-    url = <span class="string">"<span class="subst">#{base}</span><span class="subst">#{user}</span><span class="subst">#{namespace}</span>"</span>
+    url = <span class="string">"<span class="subst">#{base}</span><span class="subst">#{namespace}</span>"</span>
 
     $.get(url).<span class="keyword">then</span> (data) -&gt;
       $(data).find(<span class="string">"Key"</span>).map -&gt;
@@ -76,29 +84,6 @@ module.<span class="function"><span class="title">exports</span></span> = (polic
               <div class="pilwrap">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>To get a census of all the items we need to list them, then perform a HEAD
-request to get the Content-Type.</p>
-<p>This will let us partition the items into images, and json data.</p>
-
-            </div>
-            <div class="content"><pre><code class="lang-coffeescript">  census: (namespace=<span class="string">""</span>) -&gt;
-    namespace = <span class="string">"/<span class="subst">#{namespace}</span>"</span>
-
-    url = <span class="string">"<span class="subst">#{base}</span><span class="subst">#{userId}</span><span class="subst">#{namespace}</span>"</span>
-
-    $.get(url).<span class="keyword">then</span> (data) -&gt;
-      $(data).find(<span class="string">"Key"</span>).map -&gt;
-        <span class="keyword">this</span>.innerHTML
-      .get()</code></pre>
-</div>
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              <div class="pilwrap">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
               <h2 id="helpers">Helpers</h2>
 
             </div>
@@ -108,10 +93,10 @@ request to get the Content-Type.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-5">
             <div class="annotation">
               <div class="pilwrap">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               
             </div>
