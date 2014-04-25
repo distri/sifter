@@ -185,7 +185,7 @@
     },
     "style.styl": {
       "path": "style.styl",
-      "content": "html\n  height: 100%\n\nbody\n  font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif\n  height: 100%\n  margin: 0\n  overflow: hidden\n  position: relative\n\n.help\n  color: white\n  height: 100%\n  background-color: rgba(0, 0, 0, 0.875)\n  padding: 1em\n  position: absolute\n  top: 100%\n  width: 100%\n  z-index: 9000\n\n  transition-duration: 0.3s\n\n  &.up\n    top: 0\n\n  .key\n    display: inline-block\n    font-weight: bold\n    padding-right: 20px\n    text-align: right\n    vertical-align: top\n    width: 160px\n\n  .command\n    display: inline-block\n",
+      "content": "html\n  height: 100%\n\nbody\n  font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif\n  height: 100%\n  margin: 0\n  position: relative\n\n.help\n  color: white\n  height: 100%\n  background-color: rgba(0, 0, 0, 0.875)\n  padding: 1em\n  position: absolute\n  top: 100%\n  width: 100%\n  z-index: 9000\n\n  transition-duration: 0.3s\n\n  &.up\n    top: 0\n\n  .key\n    display: inline-block\n    font-weight: bold\n    padding-right: 20px\n    text-align: right\n    vertical-align: top\n    width: 160px\n\n  .command\n    display: inline-block\n",
       "mode": "100644"
     },
     "templates/main.haml": {
@@ -217,7 +217,7 @@
     },
     "style": {
       "path": "style",
-      "content": "module.exports = \"html {\\n  height: 100%;\\n}\\n\\nbody {\\n  font-family: \\\"HelveticaNeue-Light\\\", \\\"Helvetica Neue Light\\\", \\\"Helvetica Neue\\\", Helvetica, Arial, \\\"Lucida Grande\\\", sans-serif;\\n  height: 100%;\\n  margin: 0;\\n  overflow: hidden;\\n  position: relative;\\n}\\n\\n.help {\\n  color: white;\\n  height: 100%;\\n  background-color: rgba(0, 0, 0, 0.875);\\n  padding: 1em;\\n  position: absolute;\\n  top: 100%;\\n  width: 100%;\\n  z-index: 9000;\\n  -ms-transition-duration: 0.3s;\\n  -moz-transition-duration: 0.3s;\\n  -webkit-transition-duration: 0.3s;\\n  transition-duration: 0.3s;\\n}\\n\\n.help.up {\\n  top: 0;\\n}\\n\\n.help .key {\\n  display: inline-block;\\n  font-weight: bold;\\n  padding-right: 20px;\\n  text-align: right;\\n  vertical-align: top;\\n  width: 160px;\\n}\\n\\n.help .command {\\n  display: inline-block;\\n}\";",
+      "content": "module.exports = \"html {\\n  height: 100%;\\n}\\n\\nbody {\\n  font-family: \\\"HelveticaNeue-Light\\\", \\\"Helvetica Neue Light\\\", \\\"Helvetica Neue\\\", Helvetica, Arial, \\\"Lucida Grande\\\", sans-serif;\\n  height: 100%;\\n  margin: 0;\\n  position: relative;\\n}\\n\\n.help {\\n  color: white;\\n  height: 100%;\\n  background-color: rgba(0, 0, 0, 0.875);\\n  padding: 1em;\\n  position: absolute;\\n  top: 100%;\\n  width: 100%;\\n  z-index: 9000;\\n  -ms-transition-duration: 0.3s;\\n  -moz-transition-duration: 0.3s;\\n  -webkit-transition-duration: 0.3s;\\n  transition-duration: 0.3s;\\n}\\n\\n.help.up {\\n  top: 0;\\n}\\n\\n.help .key {\\n  display: inline-block;\\n  font-weight: bold;\\n  padding-right: 20px;\\n  text-align: right;\\n  vertical-align: top;\\n  width: 160px;\\n}\\n\\n.help .command {\\n  display: inline-block;\\n}\";",
       "type": "blob"
     },
     "templates/main": {
