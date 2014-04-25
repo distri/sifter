@@ -17,9 +17,25 @@ Sift through Images and Junx
     # trinket.loadWorkspace("master").then (data) ->
     #   console.log data
 
+    template = require "./templates/main"
+    view = template
+      url: (key) ->
+        n = parseInt key.slice(-1), 0x10
+        if isNaN(n)
+          n = 0
+        else
+          n = n % 4
+
+        "t#{n}.pixiecdn.com/#{key}"
+
+      keys: storage.get("recentImages") or []
+
+    document.body.appendChild(view)
+
     appendRecentImage = (key) ->
       recentImages = storage.get("recentImages") or []
-      recentImages.push key
+      if recentImages.indexOf(key) is -1
+        recentImages.push key 
 
       storage.set "recentImages", recentImages
 

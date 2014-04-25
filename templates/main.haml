@@ -1,0 +1,6 @@
+
+- self = this
+.images
+  - each @keys, (key) ->
+    - url = self.url(key)
+    %img(src=url)
