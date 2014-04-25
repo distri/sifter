@@ -26,7 +26,7 @@ Sift through Images and Junx
         else
           n = n % 4
 
-        "t#{n}.pixiecdn.com/#{key}"
+        "http://t#{n}.pixiecdn.com/#{key}"
 
       keys: storage.get("recentImages") or []
 
