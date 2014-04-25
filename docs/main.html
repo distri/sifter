@@ -50,9 +50,25 @@ trinket = S3Trinket(JSON.parse localStorage.TRINKET_POLICY)
 <span class="comment"># trinket.loadWorkspace("master").then (data) -&gt;</span>
 <span class="comment">#   console.log data</span>
 
+template = require <span class="string">"./templates/main"</span>
+view = template
+  url: (key) -&gt;
+    n = parseInt key.slice(-<span class="number">1</span>), <span class="number">0x10</span>
+    <span class="keyword">if</span> isNaN(n)
+      n = <span class="number">0</span>
+    <span class="keyword">else</span>
+      n = n % <span class="number">4</span>
+
+    <span class="string">"t<span class="subst">#{n}</span>.pixiecdn.com/<span class="subst">#{key}</span>"</span>
+
+  keys: storage.get(<span class="string">"recentImages"</span>) <span class="keyword">or</span> []
+
+document.body.appendChild(view)
+
 <span class="function"><span class="title">appendRecentImage</span></span> = (key) -&gt;
   recentImages = storage.get(<span class="string">"recentImages"</span>) <span class="keyword">or</span> []
-  recentImages.push key
+  <span class="keyword">if</span> recentImages.indexOf(key) <span class="keyword">is</span> -<span class="number">1</span>
+    recentImages.push key 
 
   storage.set <span class="string">"recentImages"</span>, recentImages
 
